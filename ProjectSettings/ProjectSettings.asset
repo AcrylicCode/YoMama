@@ -222,7 +222,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/GitProjects/YoMamaGame/AndBuild/FFM_01.keystore
+  AndroidKeystoreName: F:/3D/Projects/YoMama/Unity/FFM_01.keystore
   AndroidKeyaliasName: ffm key
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
