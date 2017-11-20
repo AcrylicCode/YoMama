@@ -68,7 +68,8 @@ public class TokenManager : MonoBehaviour {
 
         for(int i = 0; i < tokenAmountTexts.Length; i++)
         {
-            tokenAmountTexts[i].text = tokens + "";
+            if(tokenAmountTexts[i] != null)
+                tokenAmountTexts[i].text = tokens + "";
         }
 	}
 

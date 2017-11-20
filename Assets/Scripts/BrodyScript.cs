@@ -11,13 +11,14 @@ public class BrodyScript : MonoBehaviour {
     private UnityAction veryBadScoreListener;
 
     public Animator anim;
+    public AnimationClip throwClip;
 
     void Awake()
     {
-        greatScoreListener = new UnityAction(brodyThrow);
-        goodScoreListener = new UnityAction(brodyThrow);
-        badScoreListener = new UnityAction(brodyThrow);
-        veryBadScoreListener = new UnityAction(brodyThrow);
+        greatScoreListener = new UnityAction(BrodyThrow);
+        goodScoreListener = new UnityAction(BrodyThrow);
+        badScoreListener = new UnityAction(BrodyThrow);
+        veryBadScoreListener = new UnityAction(BrodyThrow);
     }
     void OnEnable()
     {
@@ -34,16 +35,9 @@ public class BrodyScript : MonoBehaviour {
         EventManager.StopListening("veryBadTrigger", veryBadScoreListener);
     }
 
-        void Start()
+    void BrodyThrow()
     {
-        anim = GetComponent<Animator>();
+        Debug.Log("played");
+        anim.Play(throwClip.name);
     }
-
-    void brodyThrow()
-    {
-        //anim.SetBool("Throw", true);
-        anim.Play("Brody Throw anim");
-    }
-        
-	
 }
