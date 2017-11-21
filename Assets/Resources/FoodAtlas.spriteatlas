@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FoodAtlas
+  m_EditorData:
+    textureSettings:
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      colorSpace: 1
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+    platformSettings: []
+    packingParameters:
+      paddingPower: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    packedHash:
+      serializedVersion: 2
+      Hash: 561698740600b151f2ebad43fb1fd7b2
+    variantMultiplier: 1
+    bindAsDefault: 1
+    finalFormat: 4
+    hashString: 561698740600b151f2ebad43fb1fd7b2
+    totalSpriteSurfaceArea: 1048576
+    packables:
+    - {fileID: 2800000, guid: 07ae68b8ad79942449016a8de6e87a9a, type: 3}
+    - {fileID: 2800000, guid: db79a9e12d3cb0143b6c22ed3d1dafa2, type: 3}
+    - {fileID: 2800000, guid: 28e420716b822154083c61bfe3119341, type: 3}
+    - {fileID: 2800000, guid: a8d728c5b808043409c6b8a47bac7d32, type: 3}
+    - {fileID: 2800000, guid: 2f5ba4f389579954383c86214447cbc6, type: 3}
+    - {fileID: 2800000, guid: 6c9c76e626368a14fb114c4397a49d2d, type: 3}
+    - {fileID: 2800000, guid: 8564e54e6cb49fe41b480bdb1ad24ced, type: 3}
+    - {fileID: 2800000, guid: 1daaab507b4cd824c840c4524421bab7, type: 3}
+    - {fileID: 2800000, guid: 0230182cd82f5de4abf4ca173a351819, type: 3}
+    - {fileID: 2800000, guid: 31076418ff719a341a25a041473d528d, type: 3}
+    - {fileID: 2800000, guid: 4be3fc8a90023d8448ca767c894aa3b4, type: 3}
+    - {fileID: 2800000, guid: 0bc625cec021b4444afb663d85e26730, type: 3}
+    - {fileID: 2800000, guid: c033bc761ecf4b84f94d02f5eebf8155, type: 3}
+    - {fileID: 2800000, guid: 830e8e636c714f3489eb83cc65ee861a, type: 3}
+    - {fileID: 2800000, guid: f70c7ad338553a444843b527b065c375, type: 3}
+    - {fileID: 2800000, guid: ebef9b99b9787d5449388beefe7b6d3b, type: 3}
+    packedSpriteRenderDataKeys:
+    - 31076418ff719a341a25a041473d528d: 21300000
+    - 4be3fc8a90023d8448ca767c894aa3b4: 21300000
+    - 0bc625cec021b4444afb663d85e26730: 21300000
+    - c033bc761ecf4b84f94d02f5eebf8155: 21300000
+    - 28e420716b822154083c61bfe3119341: 21300000
+    - 830e8e636c714f3489eb83cc65ee861a: 21300000
+    - db79a9e12d3cb0143b6c22ed3d1dafa2: 21300000
+    - f70c7ad338553a444843b527b065c375: 21300000
+    - 07ae68b8ad79942449016a8de6e87a9a: 21300000
+    - ebef9b99b9787d5449388beefe7b6d3b: 21300000
+    - 8564e54e6cb49fe41b480bdb1ad24ced: 21300000
+    - 6c9c76e626368a14fb114c4397a49d2d: 21300000
+    - 2f5ba4f389579954383c86214447cbc6: 21300000
+    - a8d728c5b808043409c6b8a47bac7d32: 21300000
+    - 0230182cd82f5de4abf4ca173a351819: 21300000
+    - 1daaab507b4cd824c840c4524421bab7: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 31076418ff719a341a25a041473d528d, type: 3}
+  - {fileID: 21300000, guid: 4be3fc8a90023d8448ca767c894aa3b4, type: 3}
+  - {fileID: 21300000, guid: 0bc625cec021b4444afb663d85e26730, type: 3}
+  - {fileID: 21300000, guid: c033bc761ecf4b84f94d02f5eebf8155, type: 3}
+  - {fileID: 21300000, guid: 28e420716b822154083c61bfe3119341, type: 3}
+  - {fileID: 21300000, guid: 830e8e636c714f3489eb83cc65ee861a, type: 3}
+  - {fileID: 21300000, guid: db79a9e12d3cb0143b6c22ed3d1dafa2, type: 3}
+  - {fileID: 21300000, guid: f70c7ad338553a444843b527b065c375, type: 3}
+  - {fileID: 21300000, guid: 07ae68b8ad79942449016a8de6e87a9a, type: 3}
+  - {fileID: 21300000, guid: ebef9b99b9787d5449388beefe7b6d3b, type: 3}
+  - {fileID: 21300000, guid: 8564e54e6cb49fe41b480bdb1ad24ced, type: 3}
+  - {fileID: 21300000, guid: 6c9c76e626368a14fb114c4397a49d2d, type: 3}
+  - {fileID: 21300000, guid: 2f5ba4f389579954383c86214447cbc6, type: 3}
+  - {fileID: 21300000, guid: a8d728c5b808043409c6b8a47bac7d32, type: 3}
+  - {fileID: 21300000, guid: 0230182cd82f5de4abf4ca173a351819, type: 3}
+  - {fileID: 21300000, guid: 1daaab507b4cd824c840c4524421bab7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Food0010
+  - Food0011
+  - Food0012
+  - Food0013
+  - Food0003
+  - Food0014
+  - Food0002
+  - Food0015
+  - Food0001
+  - Food0016
+  - Food0007
+  - Food0006
+  - Food0005
+  - Food0004
+  - Food0009
+  - Food0008
+  m_Tag: FoodAtlas
+  m_IsVariant: 0

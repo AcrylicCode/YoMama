@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: CharacterAtlas
+  m_EditorData:
+    textureSettings:
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 2
+      colorSpace: 1
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 1
+    platformSettings: []
+    packingParameters:
+      paddingPower: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    packedHash:
+      serializedVersion: 2
+      Hash: 8df1e59bfb99c6a9ddf7740180b84adc
+    variantMultiplier: 1
+    bindAsDefault: 1
+    finalFormat: 47
+    hashString: 8df1e59bfb99c6a9ddf7740180b84adc
+    totalSpriteSurfaceArea: 8847360
+    packables:
+    - {fileID: 2800000, guid: d4d3ac5ea608857468e81a1458a2020c, type: 3}
+    - {fileID: 2800000, guid: 49f93de4e3ace8447b665b3d74a30d28, type: 3}
+    - {fileID: 2800000, guid: ead3c244e07eb2f42a5c71c685699f41, type: 3}
+    - {fileID: 2800000, guid: 0d574decf0eb6244892e12c5b76d9de9, type: 3}
+    - {fileID: 2800000, guid: aee0a7ae87bd1c24f9d5d4dc56c7da35, type: 3}
+    - {fileID: 2800000, guid: f7e1fbfae1fbb7540b5e8d05420de082, type: 3}
+    - {fileID: 2800000, guid: 83a36f628849c0846a7b7cd4fddb57fd, type: 3}
+    - {fileID: 2800000, guid: b8285a2f040090547a04a178ca7b4bd1, type: 3}
+    - {fileID: 2800000, guid: 5d164ff2df107574a89ef0e8405275fc, type: 3}
+    - {fileID: 2800000, guid: d2650dea4305d654f984a8ef7b2f4126, type: 3}
+    - {fileID: 2800000, guid: f7c9442cdae40a8418e011c5292e1d46, type: 3}
+    - {fileID: 2800000, guid: e9bf1ef5847a656409ce6f5dfac9e36d, type: 3}
+    - {fileID: 2800000, guid: b06f9be4492cb5048b0eff1fdaa7b94c, type: 3}
+    - {fileID: 2800000, guid: 957aca1d75fd3164c9d5adba907328d8, type: 3}
+    - {fileID: 2800000, guid: e24bdd8cdc883194393e70d475060263, type: 3}
+    packedSpriteRenderDataKeys:
+    - d4d3ac5ea608857468e81a1458a2020c: 21300000
+    - ead3c244e07eb2f42a5c71c685699f41: 21300000
+    - 49f93de4e3ace8447b665b3d74a30d28: 21300000
+    - f7c9442cdae40a8418e011c5292e1d46: 21300000
+    - e9bf1ef5847a656409ce6f5dfac9e36d: 21300000
+    - aee0a7ae87bd1c24f9d5d4dc56c7da35: 21300000
+    - f7e1fbfae1fbb7540b5e8d05420de082: 21300000
+    - 0d574decf0eb6244892e12c5b76d9de9: 21300000
+    - 5d164ff2df107574a89ef0e8405275fc: 21300000
+    - d2650dea4305d654f984a8ef7b2f4126: 21300000
+    - 83a36f628849c0846a7b7cd4fddb57fd: 21300000
+    - b8285a2f040090547a04a178ca7b4bd1: 21300000
+    - 957aca1d75fd3164c9d5adba907328d8: 21300000
+    - b06f9be4492cb5048b0eff1fdaa7b94c: 21300000
+    - e24bdd8cdc883194393e70d475060263: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d4d3ac5ea608857468e81a1458a2020c, type: 3}
+  - {fileID: 21300000, guid: ead3c244e07eb2f42a5c71c685699f41, type: 3}
+  - {fileID: 21300000, guid: 49f93de4e3ace8447b665b3d74a30d28, type: 3}
+  - {fileID: 21300000, guid: f7c9442cdae40a8418e011c5292e1d46, type: 3}
+  - {fileID: 21300000, guid: e9bf1ef5847a656409ce6f5dfac9e36d, type: 3}
+  - {fileID: 21300000, guid: aee0a7ae87bd1c24f9d5d4dc56c7da35, type: 3}
+  - {fileID: 21300000, guid: f7e1fbfae1fbb7540b5e8d05420de082, type: 3}
+  - {fileID: 21300000, guid: 0d574decf0eb6244892e12c5b76d9de9, type: 3}
+  - {fileID: 21300000, guid: 5d164ff2df107574a89ef0e8405275fc, type: 3}
+  - {fileID: 21300000, guid: d2650dea4305d654f984a8ef7b2f4126, type: 3}
+  - {fileID: 21300000, guid: 83a36f628849c0846a7b7cd4fddb57fd, type: 3}
+  - {fileID: 21300000, guid: b8285a2f040090547a04a178ca7b4bd1, type: 3}
+  - {fileID: 21300000, guid: 957aca1d75fd3164c9d5adba907328d8, type: 3}
+  - {fileID: 21300000, guid: b06f9be4492cb5048b0eff1fdaa7b94c, type: 3}
+  - {fileID: 21300000, guid: e24bdd8cdc883194393e70d475060263, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - FatMama0013
+  - FatMama0015
+  - FatMama0014
+  - Brody_Throw0008
+  - Brody_Throw0009
+  - Brody_Throw0002
+  - Brody_Throw0003
+  - Brody_Throw0001
+  - Brody_Throw0006
+  - Brody_Throw0007
+  - Brody_Throw0004
+  - Brody_Throw0005
+  - Brody_Throw0011
+  - Brody_Throw0010
+  - Brody_Throw0012
+  m_Tag: CharacterAtlas
+  m_IsVariant: 0

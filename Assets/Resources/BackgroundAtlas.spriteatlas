@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BackgroundAtlas
+  m_EditorData:
+    textureSettings:
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      colorSpace: 1
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+    platformSettings: []
+    packingParameters:
+      paddingPower: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    packedHash:
+      serializedVersion: 2
+      Hash: 00902f756ea8bd93368446c413b07791
+    variantMultiplier: 1
+    bindAsDefault: 1
+    finalFormat: 4
+    hashString: 00902f756ea8bd93368446c413b07791
+    totalSpriteSurfaceArea: 632799
+    packables:
+    - {fileID: 102900000, guid: 0b36e68c12e27ad43b74b5b9d406b7a0, type: 3}
+    packedSpriteRenderDataKeys:
+    - 770800254a9da6d47bb8b26067673a44: 21300000
+    - f6306908edebd644785a2bf9944a7bdc: 21300000
+    - 37882534444960f478f96deba34fcd30: 21300000
+    - 02f0e5f375116a840866408ea3d87ef9: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 770800254a9da6d47bb8b26067673a44, type: 3}
+  - {fileID: 21300000, guid: f6306908edebd644785a2bf9944a7bdc, type: 3}
+  - {fileID: 21300000, guid: 37882534444960f478f96deba34fcd30, type: 3}
+  - {fileID: 21300000, guid: 02f0e5f375116a840866408ea3d87ef9, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Table
+  - Bush
+  - Sky
+  - Grass
+  m_Tag: BackgroundAtlas
+  m_IsVariant: 0
