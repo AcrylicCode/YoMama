@@ -79,7 +79,7 @@ public class HighScores : MonoBehaviour
 	IEnumerator downloadHighscoresFromDatabace()
 	{
 		//Submit Score to databace
-		WWW www = new WWW (webURL + publicCode + "/pipe/10");
+		WWW www = new WWW (webURL + publicCode + "/pipe/100");
 
 		//Wait for Upload to be compleate.
 		yield return www;
@@ -121,7 +121,7 @@ public class HighScores : MonoBehaviour
 			int score = int.Parse(entryInfo[1]);
 			//string ip = entryInfo [0].Split(new char[] {'='})[1];
 			highscoresList[i] = new Highscore(username,score);
-			print (highscoresList[i].username + ": " + highscoresList[i].score);
+			//print (highscoresList[i].username + ": " + highscoresList[i].score);
 		}
 	}
 }

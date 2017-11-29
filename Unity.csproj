@@ -87,6 +87,7 @@
     <Compile Include="Assets\AcrylicCode\CanvasInitiate.cs" />
     <Compile Include="Assets\AcrylicCode\DoOnStart.cs" />
     <Compile Include="Assets\AcrylicCode\GameLoader.cs" />
+    <Compile Include="Assets\AcrylicCode\HighScoreEntry.cs" />
     <Compile Include="Assets\AcrylicCode\OpeningLoader.cs" />
     <Compile Include="Assets\AcrylicCode\SettingsPanel.cs" />
     <Compile Include="Assets\Scripts\AddTokens.cs" />
