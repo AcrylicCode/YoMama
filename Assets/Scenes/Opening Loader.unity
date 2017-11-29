@@ -398,7 +398,7 @@ MonoBehaviour:
   parentPanel: {fileID: 0}
   changeCanvasGroupOnStartup: 0
   startAlpha: 0
-  fadeTime: 2
+  fadeTime: 0.5
   interactable: 1
   blocksRaycasts: 1
   changeImageOnStartup: 0

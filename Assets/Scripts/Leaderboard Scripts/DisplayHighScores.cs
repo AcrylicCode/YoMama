@@ -10,73 +10,97 @@ using UnityEngine.UI;
 public class DisplayHighScores : MonoBehaviour
 {
     public int highscoreEntryNumber = 100;
-    public GameObject entryprefab;
-    public float entryHeight = 55;
-    public ScrollRect scrollView;
+    public Object entryprefab;
     public RectTransform contentPanel;
 
-	private HighScores highscoresManager = null;
+    public Text[] highscoreText;
 
-    private List<GameObject> entries = new List<GameObject>();
+    private HighScores highscoresManager = null;
+
+    private HighScoreEntry[] entries = new HighScoreEntry[0];
 
 	// Use this for initialization
 	void Start()
 	{
 		highscoresManager = GetComponent<HighScores>();
 		StartCoroutine("RefreshHighscores");
-	}
+
+        entries = contentPanel.GetComponentsInChildren<HighScoreEntry>(true);
+    }
 
 	public void OnHighscoresDownloaded(Highscore[] highscoreList)
 	{
-        if (contentPanel != null && entryprefab != null)
+        for (int i = 0; i < entries.Length; i++)
         {
-            //delete old entries
-            for(int i = 0; i < entries.Count; i++)
+            if (i < highscoreList.Length)
             {
-                DestroyImmediate(entries[i]);
-            }
-            entries.Clear();
+                //In the name field, get rid of the time stamp.
+                string username = highscoreList[i].username.Split(new char[] { '-' }, System.StringSplitOptions.RemoveEmptyEntries)[0];
+                username = username.Replace("+", " ");
 
-            float overallPanelHeight = 0;
-            for (int i = 0; i < highscoreList.Length; i++)
+                entries[i].SetScore("#" + (i + 1), username, highscoreList[i].score.ToString());
+            }
+            else
             {
-                if (i < highscoreEntryNumber)
+                entries[i].SetScore("#" + (i + 1), "--:--", "N/A");
+            }
+
+            if (i % 2 == 0)
+            {
+                Color panelColor = entries[i].GetComponent<Image>().color;
+                panelColor.a = 0;
+                entries[i].GetComponent<Image>().color = panelColor;
+            }
+        }
+
+        
+        if (contentPanel != null)
+        {
+            
+            for (int i = 0; i < entries.Length; i++)
+            {
+                if(i < highscoreList.Length)
                 {
+                    //entries[i].gameObject.SetActive(true);
+
                     //In the name field, get rid of the time stamp.
                     string username = highscoreList[i].username.Split(new char[] { '-' }, System.StringSplitOptions.RemoveEmptyEntries)[0];
                     username = username.Replace("+", " ");
 
-                    GameObject newEntry = GameObject.Instantiate(entryprefab, contentPanel);
-                    newEntry.GetComponent<HighScoreEntry>().SetScore((i+1) + ".", username, highscoreList[i].score.ToString());
-                    entries.Add(newEntry);
+                    //GameObject newEntry = GameObject.Instantiate(Resources.Load<GameObject>("Highscore Entry")) as GameObject;
+                    //newEntry.transform.SetParent(contentPanel);
+                    //Debug.Log(newEntry);
+                    //newEntry.GetComponent<HighScoreEntry>().SetScore((i + 1) + ".", username, highscoreList[i].score.ToString());
+                    //entries.Add(newEntry);
 
-                    overallPanelHeight += entryHeight;
-
-                    if (i % 2 == 0)
-                    {
-                        Color panelColor = newEntry.GetComponent<Image>().color;
-                        panelColor.a = 0;
-                        newEntry.GetComponent<Image>().color = panelColor;
-                    }
+                    entries[i].SetScore("#" + (i + 1), username, highscoreList[i].score.ToString());
                 }
                 else
                 {
-                    //highscoreText[i].text += "  --:--";
+                    entries[i].SetScore("#" + (i + 1), "--:--", "N/A");
+                }
+
+                if (i % 2 == 0)
+                {
+                    Color panelColor = entries[i].GetComponent<Image>().color;
+                    panelColor.a = 0;
+                    entries[i].GetComponent<Image>().color = panelColor;
                 }
             }
             //set size of content panel to fit entries
-            contentPanel.sizeDelta = new Vector2(contentPanel.sizeDelta.x, overallPanelHeight);
+            //Debug.Log("NUMBER OF ENTRIES " + highscoreList.Length);
+            //contentPanel.sizeDelta = new Vector2(contentPanel.sizeDelta.x, entries.Length * entryHeight);
+            //Debug.Log("Panel size is " + contentPanel.sizeDelta.y);
         }
-	}
+    }
 	
 	IEnumerator RefreshHighscores()
 	{
-		while (true)
+        while (true)
 		{
 			highscoresManager.downloadHighscores();
+            
 			yield return new WaitForSeconds(30);
 		}
-
-        scrollView.normalizedPosition = Vector2.zero;
 	}
 }
