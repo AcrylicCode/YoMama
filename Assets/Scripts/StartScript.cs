@@ -36,15 +36,15 @@ public class StartScript : MonoBehaviour {
 
     public void startGame()
     {
-		if (TokenManager.tokenManager.tokens >= TokenManager.tokenManager.getTokensRequired()) {
-			TokenManager.tokenManager.tokens -= TokenManager.tokenManager.getTokensRequired();
-            EventManager.triggerEvent("restart");
-            EventManager.triggerEvent ("start");
-			gameObject.SetActive (false);
-		} else if (TokenManager.tokenManager.tokens < 5) {
-			gameObject.SetActive (false);
-			needTokensPanel.SetActive (true);
-		}
+		//if (TokenManager.tokenManager.tokens >= TokenManager.tokenManager.getTokensRequired()) {
+		//	TokenManager.tokenManager.tokens -= TokenManager.tokenManager.getTokensRequired();
+  //          EventManager.triggerEvent("restart");
+  //          EventManager.triggerEvent ("start");
+		//	gameObject.SetActive (false);
+		//} else if (TokenManager.tokenManager.tokens < 5) {
+		//	gameObject.SetActive (false);
+		//	needTokensPanel.SetActive (true);
+		//}
 			
     }
 

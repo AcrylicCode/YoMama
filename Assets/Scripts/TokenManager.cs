@@ -14,26 +14,29 @@ public class TokenManager : MonoBehaviour {
 
 	// these values can be adjusted to fine-tune how generous or shrewd we are with free tokens
 	private static int numTokensRequired = 5;
-	private float defautTimeTillNext = 180f;
 	private int maxTokens = 30;
 
-
-	public float timeTillNextToken;
-	public int tokens;
+    public float defautTimeTillNext = 180f;
+    private float timeTillNextToken;
+    private int tokens;
 	public DateTime mostRecentTime;
     public UnityEvent doIfNotEnough = new UnityEvent();
     public UnityEvent doIfEnough = new UnityEvent();
     public Text[] tokenAmountTexts = new Text[0];
+    public Color textNormalColor = Color.white;
+    public Color textOverLimitColor = Color.white;
 
-	// Checks if there is already a token manager. If so, destroys its self
-	void Awake () {
+    // Checks if there is already a token manager. If so, destroys its self
+    void Awake () {
 		//if (tokenManager == null) {
 			//DontDestroyOnLoad (gameObject);
 			tokenManager = this;
-			Load ();
-		//} else if (tokenManager != this) {
-		//	Destroy (gameObject);
-		//}
+			//Load ();
+        //} else if (tokenManager != this) {
+        //	Destroy (gameObject);
+        //}
+
+        InvokeRepeating("UpdateTokens", timeTillNextToken, defautTimeTillNext);
 	}
 
     public void CheckIfHasEnough()
@@ -52,39 +55,41 @@ public class TokenManager : MonoBehaviour {
     public void TokensCost()
     {
         tokens -= numTokensRequired;
+
+        UpdateTokenTexts();
     }
 
 	// timer to grant free tokens (if tokens below max)
-	void Update(){
+	void UpdateTokens(){
 		if (tokens < maxTokens) {
-			if (timeTillNextToken <= 0) {
-				timeTillNextToken = defautTimeTillNext;
-				tokens += 1;
-			}
-			timeTillNextToken -= Time.deltaTime;
-		} else if (tokens >= maxTokens) {
-			timeTillNextToken = defautTimeTillNext;
+            AddTokens(1);
 		}
+        UpdateTokenTexts();
+        Debug.Log("update tokens to " + tokens);
+    }
 
-        for(int i = 0; i < tokenAmountTexts.Length; i++)
+    public void AddTokens(int addAmount)
+    {
+        tokens += addAmount;
+
+        UpdateTokenTexts();
+    }
+
+    void UpdateTokenTexts()
+    {
+        for (int i = 0; i < tokenAmountTexts.Length; i++)
         {
-            if(tokenAmountTexts[i] != null)
+            if (tokenAmountTexts[i] != null)
+            {
                 tokenAmountTexts[i].text = tokens + "";
+
+                if (tokens <= maxTokens)
+                    tokenAmountTexts[i].color = textNormalColor;
+                else
+                    tokenAmountTexts[i].color = textOverLimitColor;
+            }
         }
-	}
-
-/*
-	// displays token number. REPLACE WITH GUI ELEMENT 
-	void OnGUI(){
-		GUI.Label (new Rect (10, 10, 100, 30), "Tokens: " + tokens);
-		if (tokens < maxTokens) {
-			GUI.Label (new Rect (110, 10, 100, 30), "Next token:" + (int)(timeTillNextToken / 60) + ": " + ((int)(timeTillNextToken) % 60).ToString ("00"));
-		} else if (tokens >= maxTokens) {
-			GUI.Label (new Rect (110, 10, 100, 30), "Next token:" + " MAX");
-		}
-	}
-*/
-
+    }
 
 	// called when application gains or loses focus
 	void OnApplicationFocus(bool hasFocus){

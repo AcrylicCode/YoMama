@@ -26,7 +26,7 @@ public class CanvasInitiate : MonoBehaviour
     [Tooltip("Alpha when first loaded")]
     [Range(0,1)]public float startAlpha = 0;
     [Tooltip("How long it takes to fade in and out")]
-    public float fadeTime = 0.5f;
+    public float fadeTime = 0.25f;
     [Tooltip("Toggle whether is interactable when visible")]
     public bool interactable = true;
     [Tooltip("Toggle whether it blocks raycast when visible")]

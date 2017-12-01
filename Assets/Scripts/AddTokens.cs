@@ -8,6 +8,8 @@ using UnityEngine.Advertisements;
 public class AddTokens : MonoBehaviour
 {
 	public GameObject AgreeWatchAdsPanel;
+    public UnityEvent doWhileLoading = new UnityEvent();
+    public UnityEvent doWhenLoadingFinished = new UnityEvent();
     public UnityEvent doWhenFinished = new UnityEvent();
 
 	public void ShowRewardedVideo()
@@ -32,6 +34,7 @@ public class AddTokens : MonoBehaviour
     {
         Advertisement.Initialize("1552075");
 
+        doWhileLoading.Invoke();
 
         while (!Advertisement.IsReady("rewardedVideo"))
             yield return null;
@@ -40,6 +43,8 @@ public class AddTokens : MonoBehaviour
 
         ShowOptions options = new ShowOptions();
         options.resultCallback = DoShowResult;
+
+        doWhenLoadingFinished.Invoke();
 
         Advertisement.Show("rewardedVideo", options);
 
@@ -51,18 +56,19 @@ public class AddTokens : MonoBehaviour
         switch (obj)
         {
             case ShowResult.Finished:
-                int nTokenNumber = TokenManager.tokenManager.tokens;
-                nTokenNumber += 10;
+                TokenManager.tokenManager.AddTokens(10);
+                //int nTokenNumber = TokenManager.tokenManager.tokens;
+                //nTokenNumber += 10;
 
-                if (nTokenNumber >= 30)
-                {
-                    TokenManager.tokenManager.tokens = 30;
-                }
-                else
-                {
-                    TokenManager.tokenManager.tokens = nTokenNumber;
-                }
-                Debug.Log(TokenManager.tokenManager.tokens);
+                //if (nTokenNumber >= 30)
+                //{
+                //    TokenManager.tokenManager.tokens = 30;
+                //}
+                //else
+                //{
+                //    TokenManager.tokenManager.tokens = nTokenNumber;
+                //}
+                //Debug.Log(TokenManager.tokenManager.tokens);
 
                 break;
             case ShowResult.Failed:

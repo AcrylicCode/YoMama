@@ -90,6 +90,7 @@
     <Compile Include="Assets\AcrylicCode\HighScoreEntry.cs" />
     <Compile Include="Assets\AcrylicCode\OpeningLoader.cs" />
     <Compile Include="Assets\AcrylicCode\SettingsPanel.cs" />
+    <Compile Include="Assets\AcrylicCode\SFXSlider.cs" />
     <Compile Include="Assets\Scripts\AddTokens.cs" />
     <Compile Include="Assets\Scripts\BadFoodTrigger.cs" />
     <Compile Include="Assets\Scripts\BrodyScript.cs" />
