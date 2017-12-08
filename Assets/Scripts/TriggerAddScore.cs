@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class TriggerAddScore : MonoBehaviour {
 
+    public enum ScoreType
+    {
+        great = 15,
+        good = 10,
+        bad = -5,
+        veryBad = -10
+    }
+
+    public delegate void AddScoreEvent(ScoreType scoreType);
+    public static AddScoreEvent Event_AddScore;
+    public void Do_AddScore(ScoreType scoreType) { if (Event_AddScore != null) Event_AddScore(scoreType); }
+
+    public ScoreType scoreType = ScoreType.good;
     public GameObject ScoreAdd;
     public GameObject Parent;
     public GameObject Score;
@@ -20,7 +33,8 @@ public class TriggerAddScore : MonoBehaviour {
 
     public void AddScore()
     {
-        Instantiate(ScoreAdd, scorePos + spacer, Quaternion.identity, Parent.transform);
+        //Instantiate(ScoreAdd, scorePos + spacer, Quaternion.identity, Parent.transform);
+        Do_AddScore(scoreType);
     }
 
 }

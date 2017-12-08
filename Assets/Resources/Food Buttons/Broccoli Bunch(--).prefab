@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1567864a91feb46ad5326519291f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreType: -10
   ScoreAdd: {fileID: 1780817335681664, guid: 5056d89e4398a7c4aa4370b73ded1175, type: 2}
   Parent: {fileID: 0}
   Score: {fileID: 0}
