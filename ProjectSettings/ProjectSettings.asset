@@ -148,7 +148,7 @@ PlayerSettings:
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -222,7 +222,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/3D/Projects/YoMama/Unity/FFM_01.keystore
+  AndroidKeystoreName: D:/3D/Projects/YoMama/Unity/FFM_01.keystore
   AndroidKeyaliasName: ffm key
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
@@ -237,11 +237,14 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 6dfda47ec7d87f44ea6c2d583cce9033, type: 3}
+      m_Icon: {fileID: 2800000, guid: 50ee05fdb52df0747aea846b02229164, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
-  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 0b0000000800000015000000
+    m_Automatic: 1
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0

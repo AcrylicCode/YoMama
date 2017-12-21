@@ -87,6 +87,7 @@ public class ScoreScript : MonoBehaviour
     void badScore()
     {
         scoreNum -= 5;
+        scoreNum = (int)Mathf.Clamp(scoreNum, 0, 9999999999999);
         score.text = "lbs: " + scoreNum;
         anim.Play("MamaSad");
         EventManager.triggerEvent("badScoreAdd");
@@ -94,6 +95,7 @@ public class ScoreScript : MonoBehaviour
     void veryBadScore()
     {
         scoreNum -= 10;
+        scoreNum = (int)Mathf.Clamp(scoreNum, 0, 9999999999999);
         score.text = "lbs: " + scoreNum;
         anim.Play("MamaSad");
         EventManager.triggerEvent("veryBadScoreAdd");

@@ -55,6 +55,7 @@ public class TokenManager : MonoBehaviour {
     public void TokensCost()
     {
         tokens -= numTokensRequired;
+        if (tokens < 0) tokens = 0;
 
         UpdateTokenTexts();
     }
@@ -65,12 +66,14 @@ public class TokenManager : MonoBehaviour {
             AddTokens(1);
 		}
         UpdateTokenTexts();
-        Debug.Log("update tokens to " + tokens);
+        //Debug.Log("update tokens to " + tokens);
     }
 
     public void AddTokens(int addAmount)
     {
         tokens += addAmount;
+
+        if (tokens < 0) tokens = 0;
 
         UpdateTokenTexts();
     }

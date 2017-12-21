@@ -57,18 +57,6 @@ public class AddTokens : MonoBehaviour
         {
             case ShowResult.Finished:
                 TokenManager.tokenManager.AddTokens(10);
-                //int nTokenNumber = TokenManager.tokenManager.tokens;
-                //nTokenNumber += 10;
-
-                //if (nTokenNumber >= 30)
-                //{
-                //    TokenManager.tokenManager.tokens = 30;
-                //}
-                //else
-                //{
-                //    TokenManager.tokenManager.tokens = nTokenNumber;
-                //}
-                //Debug.Log(TokenManager.tokenManager.tokens);
 
                 break;
             case ShowResult.Failed:
