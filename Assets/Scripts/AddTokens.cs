@@ -7,6 +7,7 @@ using UnityEngine.Advertisements;
 
 public class AddTokens : MonoBehaviour
 {
+    public string gameID = "";
 	public GameObject AgreeWatchAdsPanel;
     public UnityEvent doWhileLoading = new UnityEvent();
     public UnityEvent doWhenLoadingFinished = new UnityEvent();
@@ -15,24 +16,12 @@ public class AddTokens : MonoBehaviour
 	public void ShowRewardedVideo()
 	{
         StartCoroutine("DoShowRewardedVideo");
-
-//		Advertisement.Initialize ("1552075");
-	
-//		if(Advertisement.IsReady("rewardedVideo"))
-//		{
-////			var option = new ShowOptions{resultCallback = HandleAction};
-////			Advertisement.Show ("rewardedVideo", option);
-
-//			ShowOptions options = new ShowOptions();
-//			options.resultCallback = HandleShowResult;
-
-//			Advertisement.Show("rewardedVideo", options);
-//		}
 	}
 
     IEnumerator DoShowRewardedVideo()
     {
-        Advertisement.Initialize("1552075");
+        //Advertisement.Initialize("1552075");
+        Advertisement.Initialize(gameID);
 
         doWhileLoading.Invoke();
 
