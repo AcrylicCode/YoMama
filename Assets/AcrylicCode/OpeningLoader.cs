@@ -8,10 +8,11 @@ public class OpeningLoader : MonoBehaviour
 {
     //PUBLIC
     public string sceneName = "";
-    public Image loadingBarImage;
-    public float waitTime = 0.5f;
-    public float loadTransitionSpeed = 0.5f;
+    //public Image loadingBarImage;
+    //public float waitTime = 0.5f;
+    //public float loadTransitionSpeed = 0.5f;
     public CanvasInitiate loaderCanvas;
+    public AnimationClip animClip;
 
     private string thisSceneName;
     private AsyncOperation loadAsync = null;
@@ -19,7 +20,7 @@ public class OpeningLoader : MonoBehaviour
 
     public void Awake()
     {
-        loadingBarImage.fillAmount = 0;
+        //loadingBarImage.fillAmount = 0;
         thisSceneName = SceneManager.GetActiveScene().name;
 
         StartCoroutine("LoadLevel");
@@ -31,7 +32,13 @@ public class OpeningLoader : MonoBehaviour
         {
             loadAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
-            while (loadingBarImage.fillAmount < 1)
+            //while (loadingBarImage.fillAmount < 1)
+            //    yield return null;
+            Animation canvasAnim = loaderCanvas.GetComponent<Animation>();
+            canvasAnim.Play(animClip.name);
+            yield return new WaitForSeconds(animClip.length);
+
+            while(!loadAsync.isDone)
                 yield return null;
 
             SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
@@ -43,13 +50,13 @@ public class OpeningLoader : MonoBehaviour
         yield return null;
     }
 
-    void Update()
-    {
-        if (loadAsync != null && loadingBarImage.fillAmount < 1)
-        {
-            float progress = Mathf.Clamp01(loadAsync.progress / 0.9f);
-            time += Time.deltaTime * loadTransitionSpeed;
-            loadingBarImage.fillAmount = Mathf.Clamp01(Mathf.Lerp(loadingBarImage.fillAmount, progress, time / 1f));
-        }
-    }
+    //void Update()
+    //{
+    //    if (loadAsync != null && loadingBarImage.fillAmount < 1)
+    //    {
+    //        float progress = Mathf.Clamp01(loadAsync.progress / 0.9f);
+    //        time += Time.deltaTime * loadTransitionSpeed;
+    //        loadingBarImage.fillAmount = Mathf.Clamp01(Mathf.Lerp(loadingBarImage.fillAmount, progress, time / 1f));
+    //    }
+    //}
 }

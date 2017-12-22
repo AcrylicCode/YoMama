@@ -22,7 +22,7 @@ public class MamaMouthPosition : MonoBehaviour {
         mamaScale = mama.transform.localScale;
 
         mamaMouth.transform.Translate(mamaPos + new Vector3((Screen.width / 100), mamaScale.y * 20f));
-        print(mamaScale.y * 20f);
+        //print(mamaScale.y * 20f);
     }
 	
 	// Update is called once per frame

@@ -23,7 +23,7 @@ public class ButtonSounds_Component : MonoBehaviour
 
     void OnClick()
     {
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
         if (buttonSounds.Length == 0)
             return;
 
