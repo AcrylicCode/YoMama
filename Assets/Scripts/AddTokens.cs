@@ -7,8 +7,13 @@ using UnityEngine.Advertisements;
 
 public class AddTokens : MonoBehaviour
 {
+    [Header("Ads")]
     public string gameID = "";
-	public GameObject AgreeWatchAdsPanel;
+    //public GameObject AgreeWatchAdsPanel;
+    [Header("IAP")]
+    public string buyTokensProductID = "";
+    public int buyTokensRewardAmount = 30;
+    [Header("Events")]
     public UnityEvent doWhileLoading = new UnityEvent();
     public UnityEvent doWhenLoadingFinished = new UnityEvent();
     public UnityEvent doWhenFinished = new UnityEvent();
@@ -56,5 +61,22 @@ public class AddTokens : MonoBehaviour
                 break;
         }
         doWhenFinished.Invoke();
+    }
+
+    public void IAP_BuyTokens()
+    {
+        Purchaser.ProcessCompleteEvent += EventHandler_Complete_BuyTokens;
+        Purchaser.instance.BuyProductID(buyTokensProductID);
+    }
+
+    void EventHandler_Complete_BuyTokens(bool isSuccessful)
+    {
+        Purchaser.ProcessCompleteEvent -= EventHandler_Complete_BuyTokens;
+
+        doWhenLoadingFinished.Invoke();
+        doWhenFinished.Invoke();
+
+        if (isSuccessful)
+            TokenManager.tokenManager.AddTokens(buyTokensRewardAmount);
     }
 }
