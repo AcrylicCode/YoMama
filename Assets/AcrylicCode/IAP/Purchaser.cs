@@ -19,19 +19,22 @@ public class Purchaser : MonoBehaviour, IStoreListener
     // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
     // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
     // specific mapping to Unity Purchasing's AddProduct, below.
-    public static string kProductIDConsumable = "consumable";
-    public static string kProductIDNonConsumable = "nonconsumable";
-    public static string kProductIDSubscription = "subscription";
+    
+    //public static string kProductIDConsumable = "consumable";
+    //public static string kProductIDNonConsumable = "nonconsumable";
+    //public static string kProductIDSubscription = "subscription";
 
     public static Purchaser instance = null;
+    public string storeAddress = "com.unity3d.subscription.new";
 
     // Event that calls a function in the caller script to dictate what happens when the purchase is completed
-    public delegate void ProcessComplete(bool isSuccessful);
+    public delegate void ProcessComplete(string productID);
     public static ProcessComplete ProcessCompleteEvent;
-    private void Announce_ProcessComplete(bool isSuccessful) { if (ProcessCompleteEvent != null) ProcessCompleteEvent(isSuccessful); }
+    private void Announce_ProcessComplete(string productID) { if (ProcessCompleteEvent != null) ProcessCompleteEvent(productID); }
 
     //vavriables for the process complete delegate
     private string givenProductID = "";
+    public static List<string> productListConsumable = new List<string>();
 
     // Apple App Store-specific product identifier for the subscription product.
     private static string kProductNameAppleSubscription = "com.unity3d.subscription.new";
@@ -65,17 +68,28 @@ public class Purchaser : MonoBehaviour, IStoreListener
 
         // Add a product to sell / restore by way of its identifier, associating the general identifier
         // with its store-specific identifiers.
-        builder.AddProduct(kProductIDConsumable, ProductType.Consumable);
+        //builder.AddProduct(kProductIDConsumable, ProductType.Consumable);
+
+        //ADD Consumables
+        Debug.Log(productListConsumable.Count);
+        for (int i = 0; i < productListConsumable.Count; i++)
+        {
+            //builder.AddProduct(productListConsumable[i], ProductType.Consumable);
+            builder.AddProduct(productListConsumable[i], ProductType.Consumable, 
+                new IDs() { { storeAddress + "." + productListConsumable[i], GooglePlay.Name } });
+        }
+
         // Continue adding the non-consumable product.
-        builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
+        //builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
+
         // And finish adding the subscription product. Notice this uses store-specific IDs, illustrating
         // if the Product ID was configured differently between Apple and Google stores. Also note that
         // one uses the general kProductIDSubscription handle inside the game - the store-specific IDs 
         // must only be referenced here. 
-        builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
-            { kProductNameAppleSubscription, AppleAppStore.Name },
-            { kProductNameGooglePlaySubscription, GooglePlay.Name },
-        });
+        //builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
+        //    { kProductNameAppleSubscription, AppleAppStore.Name },
+        //    { kProductNameGooglePlaySubscription, GooglePlay.Name },
+        //});
 
         // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
         // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
@@ -118,12 +132,15 @@ public class Purchaser : MonoBehaviour, IStoreListener
 
     public void BuyProductID(string productId)
     {
+        //productId = storeAddress + productId;
         // If Purchasing has been initialized ...
         if (IsInitialized())
         {
             // ... look up the Product reference with the general product identifier and the Purchasing 
             // system's products collection.
             Product product = m_StoreController.products.WithID(productId);
+            Debug.Log(productId);
+            Debug.Log(product);
 
             // If the look up found a product for this device's store and that product is ready to be sold ... 
             if (product != null && product.availableToPurchase)
@@ -143,7 +160,7 @@ public class Purchaser : MonoBehaviour, IStoreListener
                 Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
 
                 
-                Announce_ProcessComplete(false);
+                Announce_ProcessComplete("NULL");
             }
         }
         // Otherwise ...
@@ -152,6 +169,8 @@ public class Purchaser : MonoBehaviour, IStoreListener
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
             Debug.Log("BuyProductID FAIL. Not initialized.");
+
+            Announce_ProcessComplete("NULL");
         }
     }
 
@@ -207,6 +226,7 @@ public class Purchaser : MonoBehaviour, IStoreListener
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
         m_StoreExtensionProvider = extensions;
+        //Debug.Log("extensions " + extensions);
     }
 
 
@@ -221,12 +241,13 @@ public class Purchaser : MonoBehaviour, IStoreListener
         if (String.Equals(args.purchasedProduct.definition.id, givenProductID, StringComparison.Ordinal))
         {
             Debug.Log("ProcessPurchase: PASS." + args.purchasedProduct.definition.id);
+            Debug.Log(args.purchasedProduct.receipt);
 
-            Announce_ProcessComplete(true);
+            Announce_ProcessComplete(args.purchasedProduct.definition.id);
         }
         else
         {
-            Announce_ProcessComplete(false);
+            Announce_ProcessComplete("NULL");
         }
         
 
@@ -268,5 +289,7 @@ public class Purchaser : MonoBehaviour, IStoreListener
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+
+        Announce_ProcessComplete("NULL");
     }
 }

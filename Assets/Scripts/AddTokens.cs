@@ -2,17 +2,26 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Advertisements;
 //using GoogleMobileAds.Api;
 
 public class AddTokens : MonoBehaviour
 {
+    [System.Serializable]
+    public class Purchase_Tokens
+    {
+        public string productID;
+        public int tokenAmount = 10;
+    }
+
     [Header("Ads")]
     public string gameID = "";
     //public GameObject AgreeWatchAdsPanel;
     [Header("IAP")]
-    public string buyTokensProductID = "";
-    public int buyTokensRewardAmount = 30;
+    public Purchase_Tokens[] tokenPurchases = new Purchase_Tokens[0];
+    //public string buyTokensProductID = "";
+    //public int buyTokensRewardAmount = 30;
     [Header("Events")]
     public UnityEvent doWhileLoading = new UnityEvent();
     public UnityEvent doWhenLoadingFinished = new UnityEvent();
@@ -63,20 +72,31 @@ public class AddTokens : MonoBehaviour
         doWhenFinished.Invoke();
     }
 
-    public void IAP_BuyTokens()
+    private void Awake()
     {
-        Purchaser.ProcessCompleteEvent += EventHandler_Complete_BuyTokens;
-        Purchaser.instance.BuyProductID(buyTokensProductID);
+        for (int i = 0; i < tokenPurchases.Length; i ++)
+        {
+            Purchaser.productListConsumable.Add(tokenPurchases[i].productID);
+        }
     }
 
-    void EventHandler_Complete_BuyTokens(bool isSuccessful)
+    public void IAP_BuyTokens(int purchaseEntryNumber)
+    {
+        Purchaser.ProcessCompleteEvent += EventHandler_Complete_BuyTokens;
+        Purchaser.instance.BuyProductID(tokenPurchases[purchaseEntryNumber].productID);
+    }
+
+    void EventHandler_Complete_BuyTokens(string productID)
     {
         Purchaser.ProcessCompleteEvent -= EventHandler_Complete_BuyTokens;
 
         doWhenLoadingFinished.Invoke();
         doWhenFinished.Invoke();
 
-        if (isSuccessful)
-            TokenManager.tokenManager.AddTokens(buyTokensRewardAmount);
+        for (int i = 0; i < tokenPurchases.Length; i++)
+        {
+            if(tokenPurchases[i].productID == productID)
+                TokenManager.tokenManager.AddTokens(tokenPurchases[i].tokenAmount);
+        }
     }
 }

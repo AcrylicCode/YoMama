@@ -125,6 +125,7 @@
     <Compile Include="Assets\AcrylicCode\DoOnStart.cs" />
     <Compile Include="Assets\AcrylicCode\GameLoader.cs" />
     <Compile Include="Assets\AcrylicCode\HighScoreEntry.cs" />
+    <Compile Include="Assets\AcrylicCode\IAP\IAP.cs" />
     <Compile Include="Assets\AcrylicCode\IAP\Purchaser.cs" />
     <Compile Include="Assets\AcrylicCode\OpeningLoader.cs" />
     <Compile Include="Assets\AcrylicCode\SettingsPanel.cs" />

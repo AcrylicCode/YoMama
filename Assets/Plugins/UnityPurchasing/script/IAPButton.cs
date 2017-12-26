@@ -217,7 +217,7 @@ namespace UnityEngine.Purchasing
                 catalog = ProductCatalog.LoadDefaultCatalog();
 
                 StandardPurchasingModule module = StandardPurchasingModule.Instance();
-                module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+                //module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
 
                 ConfigurationBuilder builder = ConfigurationBuilder.Instance(module);
 
