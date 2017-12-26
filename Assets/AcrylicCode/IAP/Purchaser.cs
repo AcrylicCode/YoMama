@@ -75,8 +75,7 @@ public class Purchaser : MonoBehaviour, IStoreListener
         for (int i = 0; i < productListConsumable.Count; i++)
         {
             //builder.AddProduct(productListConsumable[i], ProductType.Consumable);
-            builder.AddProduct(productListConsumable[i], ProductType.Consumable, 
-                new IDs() { { storeAddress + "." + productListConsumable[i], GooglePlay.Name } });
+            builder.AddProduct(productListConsumable[i], ProductType.Consumable);
         }
 
         // Continue adding the non-consumable product.
