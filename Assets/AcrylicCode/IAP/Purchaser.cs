@@ -25,7 +25,6 @@ public class Purchaser : MonoBehaviour, IStoreListener
     //public static string kProductIDSubscription = "subscription";
 
     public static Purchaser instance = null;
-    public string storeAddress = "com.unity3d.subscription.new";
 
     // Event that calls a function in the caller script to dictate what happens when the purchase is completed
     public delegate void ProcessComplete(string productID);
