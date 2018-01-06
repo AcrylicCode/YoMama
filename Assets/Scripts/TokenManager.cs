@@ -31,10 +31,11 @@ public class TokenManager : MonoBehaviour {
 		//if (tokenManager == null) {
 			//DontDestroyOnLoad (gameObject);
 			tokenManager = this;
-			//Load ();
+        //Load ();
         //} else if (tokenManager != this) {
         //	Destroy (gameObject);
         //}
+        Load();
 
         InvokeRepeating("UpdateTokens", timeTillNextToken, defautTimeTillNext);
 	}
@@ -122,35 +123,45 @@ public class TokenManager : MonoBehaviour {
 
 	//loads data from file (if it exists)
 	public void Load(){
-		if (File.Exists (Application.persistentDataPath + "/tokenInfo.dat")) {
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/tokenInfo.dat", FileMode.Open);
-			TokenData data = (TokenData)bf.Deserialize (file);
-			file.Close ();
+        if (File.Exists(Application.persistentDataPath + "/tokenInfo.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/tokenInfo.dat", FileMode.Open);
+            TokenData data = (TokenData)bf.Deserialize(file);
+            file.Close();
 
-			tokens = data.tokens;
-			timeTillNextToken = data.timeLeft;
-			mostRecentTime = data.mostRecentTime;
+            tokens = data.tokens;
+            timeTillNextToken = data.timeLeft;
+            mostRecentTime = data.mostRecentTime;
 
-			//calculates tokens given from time away
-			float diffInSeconds = (float)(DateTime.Now - mostRecentTime).TotalSeconds;
-			if (diffInSeconds > 0) {
+            //calculates tokens given from time away
+            float diffInSeconds = (float)(DateTime.Now - mostRecentTime).TotalSeconds;
+            if (diffInSeconds > 0)
+            {
 
-				float totalSeconds = timeTillNextToken + diffInSeconds;
-				if (tokens < maxTokens) {
-					int tokensToAdd = (int)(totalSeconds / defautTimeTillNext);
+                float totalSeconds = timeTillNextToken + diffInSeconds;
+                if (tokens < maxTokens)
+                {
+                    int tokensToAdd = (int)(totalSeconds / defautTimeTillNext);
 
-					//adds accrued tokens; sets tokens to 30 if they would exceed 30 (max)
-					if (tokensToAdd + tokens > maxTokens) {
-						tokens = maxTokens;
-					} else {
-						tokens += tokensToAdd;
-					}
-					timeTillNextToken = totalSeconds % defautTimeTillNext;
-				}
-			}
+                    //adds accrued tokens; sets tokens to 30 if they would exceed 30 (max)
+                    if (tokensToAdd + tokens > maxTokens)
+                    {
+                        tokens = maxTokens;
+                        UpdateTokenTexts();
+                    }
+                    else
+                    {
+                        AddTokens(tokensToAdd);
+                    }
+                    timeTillNextToken = totalSeconds % defautTimeTillNext;
+                }
+            }
 
-		}
+        }
+        //if no previous save, AKA new game
+        else
+            AddTokens(30);
 	}
 
 	// getters for private fields that we don't want other classes modifying

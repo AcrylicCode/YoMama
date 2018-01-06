@@ -7,104 +7,108 @@ using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
-    public UnityEvent doOnEnd = new UnityEvent();
+    //PUBLIC
+    public Color goodColor = Color.green;
+    public Color badColor = Color.red;
+    public float comboIncrememnt = 0.1f;
+    public Text scoreText;
+    public GameObject mama;
+    public Animator mamaAnim;
+    public AnimationClip mamaHappyClip;
+    public AnimationClip mamaSadClip;
+    public Animation addScoreAnim;
+    public Transform mamaMouth;
+    public Text addScoreText;
 
-    private Text score;
-    private int scoreNum;
+    public UnityEvent doOnEnd = new UnityEvent();
     
-    private UnityAction greatScoreListener;
-    private UnityAction goodScoreListener;
-    private UnityAction badScoreListener;
-    private UnityAction veryBadScoreListener;
+    //PRIVATE
+    private int scoreNum = 0;
+    private int correctResponseCount = 0;
     private UnityAction restartListener;
     private UnityAction gameOverListener;
 
-    public GameObject mama;
-    public Animator anim;
+    
 
 
     void Awake()
     {
-        greatScoreListener = new UnityAction(greatScore);
-        goodScoreListener = new UnityAction(goodScore);
-        badScoreListener = new UnityAction(badScore);
-        veryBadScoreListener = new UnityAction(veryBadScore);
         restartListener = new UnityAction(restartGame);
         gameOverListener = new UnityAction(gameEnd);
+
+        TriggerAddScore.Event_AddScore += EventListener_Addscore;
     }
 
     void OnEnable()
     {
-        EventManager.StartListening("greatTrigger", greatScoreListener);
-        EventManager.StartListening("goodTrigger", goodScoreListener);
-        EventManager.StartListening("badTrigger", badScoreListener);
-        EventManager.StartListening("veryBadTrigger", veryBadScoreListener);
         EventManager.StartListening("restart", restartListener);
         EventManager.StartListening("gameOver", gameOverListener);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening("greatTrigger", greatScoreListener);
-        EventManager.StopListening("goodTrigger", goodScoreListener);
-        EventManager.StopListening("badTrigger", badScoreListener);
-        EventManager.StopListening("veryBadTrigger", veryBadScoreListener);
         EventManager.StopListening("restart", restartListener);
         EventManager.StopListening("gameOver", gameOverListener);
     }
 
+    void EventListener_Addscore(TriggerAddScore.ScoreType scoreType)
+    {
+        int addScore = (int)scoreType;
+        string comboString = "";
+        //positive
+        if (addScore >= 0)
+        {
+            //increment combo count
+            correctResponseCount++;
+            float totalCombo = (1 + (correctResponseCount * comboIncrememnt));
+            if (totalCombo > 10) totalCombo = 10;
+            comboString = " * " + totalCombo;
 
-    void Start() {
-        mama = GameObject.FindGameObjectWithTag("Mama");
-        anim = mama.GetComponent<Animator>();
-        score = GetComponent<Text>();
-        scoreNum = 0;
+            //change add-score text
+            addScoreText.text = "+" + addScore + comboString;
+            addScoreText.color = goodColor;
 
-        
+            //add to final score
+            scoreNum += (int)(addScore * totalCombo);
+
+            //play mama reaction
+            mamaAnim.Play(mamaHappyClip.name);
+        }
+        //negative
+        else
+        {
+            //increment combo count
+            correctResponseCount = 0;
+
+            //change add-score text
+            addScoreText.text = "" + addScore;
+            addScoreText.color = badColor;
+
+            //add to final score
+            scoreNum += addScore;
+
+            //play mama reaction
+            mamaAnim.Play(mamaSadClip.name);
+        }
+
+        //play add-score animation
+        addScoreText.transform.position = mamaMouth.position;
+        addScoreAnim.Stop();
+        addScoreAnim.Play();
+
+        //display score text
+        scoreText.text = "lbs: " + scoreNum;
+
+        //update mamas size
+        mama.transform.localScale = new Vector3(scoreNum / 500f + 4f, scoreNum / 550f + 3f, 0);
     }
 
     void restartGame()
     {
         Debug.Log("Restarted score");
         scoreNum = 0;
-        score.text = "lbs: " + scoreNum;
-    }
-
-    void greatScore()
-    {
-        scoreNum += 15;
-        score.text = "lbs: " + scoreNum;
-        anim.Play("MamaHappy");
-        EventManager.triggerEvent("greatScoreAdd");
-    }
-    void goodScore()
-    { 
-        scoreNum += 10;
-        score.text = "lbs: " + scoreNum;
-        anim.Play("MamaHappy");
-        EventManager.triggerEvent("goodScoreAdd");
-    }
-    void badScore()
-    {
-        scoreNum -= 5;
-        scoreNum = (int)Mathf.Clamp(scoreNum, 0, 9999999999999);
-        score.text = "lbs: " + scoreNum;
-        anim.Play("MamaSad");
-        EventManager.triggerEvent("badScoreAdd");
-    }
-    void veryBadScore()
-    {
-        scoreNum -= 10;
-        scoreNum = (int)Mathf.Clamp(scoreNum, 0, 9999999999999);
-        score.text = "lbs: " + scoreNum;
-        anim.Play("MamaSad");
-        EventManager.triggerEvent("veryBadScoreAdd");
-    }
-
-    // resize Mama
-    private void Update()
-    {
-        mama.transform.localScale = new Vector3(scoreNum/500f + 4f, scoreNum/ 550f + 3f, 0);
+        scoreText.text = "lbs: " + scoreNum;
+        mamaAnim.Play(mamaHappyClip.name);
     }
 
     void gameEnd()
