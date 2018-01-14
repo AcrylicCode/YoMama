@@ -148,7 +148,7 @@ PlayerSettings:
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
-  AndroidBundleVersionCode: 10
+  AndroidBundleVersionCode: 11
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -520,7 +520,12 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
+    1: 
+    4: 
     7: UNITY_ENABLED
+    13: 
+    25: 
+    26: 
   platformArchitecture: {}
   scriptingBackend: {}
   incrementalIl2cppBuild: {}

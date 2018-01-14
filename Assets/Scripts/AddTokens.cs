@@ -71,32 +71,4 @@ public class AddTokens : MonoBehaviour
         }
         doWhenFinished.Invoke();
     }
-
-    private void Awake()
-    {
-        for (int i = 0; i < tokenPurchases.Length; i ++)
-        {
-            Purchaser.productListConsumable.Add(tokenPurchases[i].productID);
-        }
-    }
-
-    public void IAP_BuyTokens(int purchaseEntryNumber)
-    {
-        Purchaser.ProcessCompleteEvent += EventHandler_Complete_BuyTokens;
-        Purchaser.instance.BuyProductID(tokenPurchases[purchaseEntryNumber].productID);
-    }
-
-    void EventHandler_Complete_BuyTokens(string productID)
-    {
-        Purchaser.ProcessCompleteEvent -= EventHandler_Complete_BuyTokens;
-
-        doWhenLoadingFinished.Invoke();
-        doWhenFinished.Invoke();
-
-        for (int i = 0; i < tokenPurchases.Length; i++)
-        {
-            if(tokenPurchases[i].productID == productID)
-                TokenManager.tokenManager.AddTokens(tokenPurchases[i].tokenAmount);
-        }
-    }
 }

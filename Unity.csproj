@@ -55,9 +55,6 @@
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity_2017/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/Program Files/Unity_2017/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity_2017/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -130,8 +127,6 @@
     <Compile Include="Assets\AcrylicCode\DoOnStart.cs" />
     <Compile Include="Assets\AcrylicCode\GameLoader.cs" />
     <Compile Include="Assets\AcrylicCode\HighScoreEntry.cs" />
-    <Compile Include="Assets\AcrylicCode\IAP\IAP.cs" />
-    <Compile Include="Assets\AcrylicCode\IAP\Purchaser.cs" />
     <Compile Include="Assets\AcrylicCode\OpeningLoader.cs" />
     <Compile Include="Assets\AcrylicCode\SettingsPanel.cs" />
     <Compile Include="Assets\AcrylicCode\SFXSlider.cs" />
@@ -179,12 +174,56 @@
     <Compile Include="Assets\Scripts\TriggerTest.cs" />
     <Compile Include="Assets\Scripts\VeryBadFoodTrigger.cs" />
     <Compile Include="Assets\Scripts\VolumeSliderManager.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\DBManager.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\DebugCalls.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\PlayfabFacebookStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\PlayfabPayPalStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\PlayfabPayPalStoreWindow.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\PlayfabSteamStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\PlayfabStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\SimpleJSON.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\StansAssets\StanAppleAppStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\StansAssets\StanAppleExtensions.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\StansAssets\StanGooglePlayStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\VoxelBusters\VoxelAppleExtensions.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Extensions\VoxelBusters\VoxelCrossStore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\IAPContainer.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\IAPItem.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\IAPListener.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\IAPManager.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\MiniJson.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\PlayfabManager.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\ReceiptValidator.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\ReceiptValidatorClient.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\ReceiptValidatorService.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\ShopManager.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\SISPurchasingModule.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\Spin.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\UIButtonRestore.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\UIButtonScene.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\UILogin.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\UpdateFunds.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VREyeRaycaster.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRGraphicRaycaster.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRGUIArrows.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRInput.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRInteractiveItem.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRReticle.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRSelectionRadial.cs" />
+    <Compile Include="Assets\SimpleIAPSystem\Scripts\VRTransformRotation.cs" />
+    <Compile Include="Assets\SugarGlazedPlugins\SimpleIAPAddOn\IAPProduct.cs" />
+    <Compile Include="Assets\SugarGlazedPlugins\SimpleIAPAddOn\IAPProductList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\4200Buttons\readme.txt" />
     <None Include="Assets\Plugins\Android\proguard-user.txt" />
     <None Include="Assets\Plugins\UnityPurchasing\Android\proguard-user.txt.OPTIONAL.txt" />
     <None Include="Assets\Plugins\UnityPurchasing\script\link.xml" />
+    <None Include="Assets\SimpleIAPSystem\Changelog.txt" />
+    <None Include="Assets\SimpleIAPSystem\README.txt" />
+    <None Include="Assets\SimpleIAPSystem\Scripts\Extensions\PlayFab\CloudScript.txt" />
+    <None Include="Assets\SimpleIAPSystem\Shaders\UIOverlay.shader" />
+    <None Include="Assets\SimpleIAPSystem\Shaders\UnlitTransparentParam.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
