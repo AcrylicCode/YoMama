@@ -51,21 +51,7 @@ public class PlayFabLogin : MonoBehaviour
 
     public void ClientSetPlayerStat()
     {
-        //PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
-        //{
-        //    Statistics = new List<StatisticUpdate>
-        //    {
-        //        new StatisticUpdate { StatisticName = "score", Value = 232},
-        //    }
-        //},
-        //result => { ClientGetPlayerStat(); },
-        //error => {
-        //    Debug.Log("Got error getting score:");
-        //    Debug.Log(error.GenerateErrorReport());
-        //}
-        //);
-
-        PlayFabAdminApi.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
         {
             Statistics = new List<StatisticUpdate>
             {
