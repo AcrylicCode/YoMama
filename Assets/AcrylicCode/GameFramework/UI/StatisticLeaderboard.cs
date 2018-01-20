@@ -17,9 +17,10 @@ public class StatisticLeaderboard : MonoBehaviour
     private List<HighScoreEntry> entries = new List<HighScoreEntry>();
 
     // Use this for initialization
-    private void Start ()
+    private void Awake ()
     {
         InstantiateScoreTexts();
+        PlayFabLogin.LoginSuccess += UpdateLeaderboardTable;
     }
 
     private void InstantiateScoreTexts()
@@ -79,63 +80,6 @@ public class StatisticLeaderboard : MonoBehaviour
 
     private IEnumerator DoSetPlayerHighScore(int value)
     {
-        //int previousScore = 0;
-        //bool checkedPrevious = false;
-
-        ////check the previous statistic
-        //PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest { StatisticNames = new List<string> { statisticName } },
-        //    result =>
-        //    {
-        //        Debug.Log("Got previous score for: " + statisticName);
-        //        previousScore = result.Statistics[0].Value;
-        //        checkedPrevious = true;
-        //    },
-        //    error => {
-        //        Debug.Log("Got error getting score:");
-        //        Debug.Log(error.GenerateErrorReport());
-        //        checkedPrevious = true;
-        //    }
-        //);
-
-        //while (checkedPrevious == false)
-        //    yield return null;
-
-        //if (value > previousScore)
-        //{
-        //    bool statUpdated = false;
-
-        //    //Update player statistic if larger than previous
-        //    PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
-        //    {
-        //        Statistics = new List<StatisticUpdate>
-        //            {
-        //                new StatisticUpdate { StatisticName = statisticName, Value = value }
-        //            }
-        //    },
-        //    success =>
-        //    {
-        //        Debug.Log("Set new score for:" + statisticName);
-        //    },
-        //    error =>
-        //    {
-        //        Debug.Log("Got error setting score:");
-        //        Debug.Log(error.GenerateErrorReport());
-        //    }
-        //    );
-        //    //end update
-
-        //    while (checkedPrevious == false)
-        //        yield return null;
-        //    yield return new WaitForSeconds(1);
-
-        //    UpdateLeaderboardTable();
-        //}
-        //else
-        //{
-        //    Debug.Log("Score not higher than previous entry for: " + statisticName);
-        //    UpdateLeaderboardTable();
-        //}
-
         PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
         {
             Statistics = new List<StatisticUpdate>
@@ -154,7 +98,7 @@ public class StatisticLeaderboard : MonoBehaviour
             }
         );
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         UpdateLeaderboardTable();
 
