@@ -1,33 +1,70 @@
-﻿using PlayFab;
-using PlayFab.ClientModels;
+﻿using PlayFab;using PlayFab.ClientModels;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PlayFabLogin : MonoBehaviour
 {
-    public void Start()
+    public delegate void BaseEvent();
+    /// <summary>
+    /// Event that fires when login is completed successfully
+    /// </summary>
+    public static BaseEvent LoginSuccess;
+    private void Announce_LoginSuccess() { if (LoginSuccess != null) LoginSuccess(); }
+
+    public CanvasInitiate loginCanvas;
+    public Text displayNameInput;
+    private string playFabId = "";
+
+    public void Awake()
     {
         PlayFabSettings.TitleId = "A9C5"; // Please change this value to your own titleId from PlayFab Game Manager
 
-        var request = new LoginWithCustomIDRequest { CustomId = "GettingStartedGuide", CreateAccount = true };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+        //ANDROID
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            var request = new LoginWithAndroidDeviceIDRequest
+            {
+                TitleId = PlayFabSettings.TitleId,
+                AndroidDeviceId = SystemInfo.deviceUniqueIdentifier,
+                AndroidDevice = SystemInfo.deviceModel,
+                CreateAccount = true
+            };
+            PlayFabClientAPI.LoginWithAndroidDeviceID(request, OnLoginSuccess, OnLoginFailure);
+        }
+        //EDITOR
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            var request = new LoginWithCustomIDRequest { CustomId = "Unity Editor", CreateAccount = true };
+            PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+        }
     }
 
     private void OnLoginSuccess(LoginResult result)
     {
-        Debug.Log("Congratulations, you made your first successful API call!");
+        playFabId = result.PlayFabId;
 
-        ClientGetTitleData();
-        ClientGetPlayerStat();
-        ClientSetPlayerStat();
-    }
-
-    public void ClientGetTitleData()
-    {
-        PlayFabClientAPI.GetTitleData(new GetTitleDataRequest(),
-            result => {
-                if (result.Data == null || !result.Data.ContainsKey("personName")) Debug.Log("No Name");
-                else Debug.Log("PersonName: " + result.Data["personName"]);
+        //check if has a display name already
+        PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest()
+        {
+            PlayFabId = playFabId
+        },
+            success => 
+            {
+                //if no display name set yet, first login
+                if(success.PlayerProfile.DisplayName == null)
+                {
+                    Debug.Log("No display name, first login");
+                    loginCanvas.FadeCanvasGroup(1);
+                }
+                else
+                {
+                    Debug.Log("DisplayName: " + success.PlayerProfile.DisplayName);
+                    loginCanvas.FadeCanvasGroup(0);
+                }
+                
+                //signal other scripts that login is completed
+                Announce_LoginSuccess();
             },
             error => {
                 Debug.Log("Got error getting titleData:");
@@ -36,40 +73,28 @@ public class PlayFabLogin : MonoBehaviour
         );
     }
 
-    public void ClientGetPlayerStat()
-    {
-        PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest(),
-            result => {
-                Debug.Log(result.Statistics[0].StatisticName + ": " + result.Statistics[0].Value);
-            },
-            error => {
-                Debug.Log("Got error getting score:");
-                Debug.Log(error.GenerateErrorReport());
-            }
-        );
-    }
-
-    public void ClientSetPlayerStat()
-    {
-        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate { StatisticName = "score", Value = 232},
-            }
-        },
-        result => { ClientGetPlayerStat(); },
-        error => {
-            Debug.Log("Got error getting score:");
-            Debug.Log(error.GenerateErrorReport());
-        }
-        );
-    }
-
     private void OnLoginFailure(PlayFabError error)
     {
         Debug.LogWarning("Something went wrong with your first API call.  :(");
         Debug.LogError("Here's some debug information:");
         Debug.LogError(error.GenerateErrorReport());
+    }
+
+    public void SetDisplayName()
+    {
+        PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest()
+        {
+            DisplayName = displayNameInput.text
+        },
+            result => 
+            {
+                Debug.Log("Set Display Name to: " + result.DisplayName);
+            },
+            error => 
+            {
+                Debug.LogError("Error setting Display Name");
+                Debug.LogError(error.GenerateErrorReport());
+            }
+        );
     }
 }

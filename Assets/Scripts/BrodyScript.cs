@@ -37,7 +37,7 @@ public class BrodyScript : MonoBehaviour {
 
     void BrodyThrow()
     {
-        Debug.Log("played");
+        //Debug.Log("played");
         anim.Play(throwClip.name);
     }
 }

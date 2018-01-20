@@ -123,10 +123,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AcrylicCode\CanvasInitiate.cs" />
-    <Compile Include="Assets\AcrylicCode\DoOnStart.cs" />
+    <Compile Include="Assets\AcrylicCode\GameFramework\UI\CanvasInitiate.cs" />
+    <Compile Include="Assets\AcrylicCode\GameFramework\UI\DoOnStart.cs" />
+    <Compile Include="Assets\AcrylicCode\GameFramework\UI\HighScoreEntry.cs" />
+    <Compile Include="Assets\AcrylicCode\GameFramework\UI\LeaderboardPrizeMessage.cs" />
+    <Compile Include="Assets\AcrylicCode\GameFramework\UI\StatisticLeaderboard.cs" />
     <Compile Include="Assets\AcrylicCode\GameLoader.cs" />
-    <Compile Include="Assets\AcrylicCode\HighScoreEntry.cs" />
     <Compile Include="Assets\AcrylicCode\OpeningLoader.cs" />
     <Compile Include="Assets\AcrylicCode\PlayFabScripts\PlayFabLogin.cs" />
     <Compile Include="Assets\AcrylicCode\SettingsPanel.cs" />

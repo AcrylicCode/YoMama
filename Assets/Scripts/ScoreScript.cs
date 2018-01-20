@@ -8,10 +8,11 @@ using UnityEngine.SceneManagement;
 public class ScoreScript : MonoBehaviour
 {
     //PUBLIC
+    public StatisticLeaderboard statisticLeaderboard;
     public Color goodColor = Color.green;
     public Color badColor = Color.red;
     public float comboIncrememnt = 0.1f;
-    public Text scoreText;
+    public Text[] scoreTexts = new Text[0];
     public GameObject mama;
     public Animator mamaAnim;
     public AnimationClip mamaHappyClip;
@@ -49,6 +50,17 @@ public class ScoreScript : MonoBehaviour
     {
         EventManager.StopListening("restart", restartListener);
         EventManager.StopListening("gameOver", gameOverListener);
+    }
+
+    void SetScoreTexts(int score)
+    {
+        for(int i = 0; i < scoreTexts.Length; i++)
+        {
+            if(scoreTexts[i] != null)
+            {
+                scoreTexts[i].text = "" + score;
+            }
+        }
     }
 
     void EventListener_Addscore(TriggerAddScore.ScoreType scoreType)
@@ -97,7 +109,7 @@ public class ScoreScript : MonoBehaviour
         addScoreAnim.Play();
 
         //display score text
-        scoreText.text = "lbs: " + scoreNum;
+        SetScoreTexts( scoreNum );
 
         //update mamas size
         mama.transform.localScale = new Vector3(scoreNum / 500f + 4f, scoreNum / 550f + 3f, 0);
@@ -105,18 +117,22 @@ public class ScoreScript : MonoBehaviour
 
     void restartGame()
     {
-        Debug.Log("Restarted score");
+        //Debug.Log("Restarted score");
         scoreNum = 0;
-        scoreText.text = "lbs: " + scoreNum;
+        SetScoreTexts(scoreNum);
         mamaAnim.Play(mamaHappyClip.name);
+        mama.transform.localScale = new Vector3(4, 3, 1);
     }
 
     void gameEnd()
     {
-        Debug.Log("Ending");
+        //Debug.Log("Ending");
         //finalScore is the players score
-        PlayerPrefs.SetInt("finalScore", scoreNum);
+        //PlayerPrefs.SetInt("finalScore", scoreNum);
         //Load the AddNewHighScore scene
+
+
+        statisticLeaderboard.SetPlayerHighScore(scoreNum);
 
         doOnEnd.Invoke();
     }

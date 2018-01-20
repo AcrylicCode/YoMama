@@ -36,6 +36,7 @@ public class TokenManager : MonoBehaviour {
         //	Destroy (gameObject);
         //}
         Load();
+        UpdateTokens();
 
         InvokeRepeating("UpdateTokens", timeTillNextToken, defautTimeTillNext);
 	}
