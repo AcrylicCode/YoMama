@@ -1,16 +1,17 @@
-﻿using PlayFab;using PlayFab.ClientModels;
+﻿using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PlayFabLogin : MonoBehaviour
 {
-    public delegate void BaseEvent();
+    public delegate void ProfileEvent(PlayerProfileModel profile);
     /// <summary>
     /// Event that fires when login is completed successfully
     /// </summary>
-    public static BaseEvent LoginSuccess;
-    private void Announce_LoginSuccess() { if (LoginSuccess != null) LoginSuccess(); }
+    public static ProfileEvent LoginSuccess;
+    private void Announce_LoginSuccess(PlayerProfileModel profile) { if (LoginSuccess != null) LoginSuccess(profile); }
 
     public CanvasInitiate loginCanvas;
     public Text displayNameInput;
@@ -18,8 +19,6 @@ public class PlayFabLogin : MonoBehaviour
 
     public void Awake()
     {
-        PlayFabSettings.TitleId = "A9C5"; // Please change this value to your own titleId from PlayFab Game Manager
-
         //ANDROID
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -49,10 +48,10 @@ public class PlayFabLogin : MonoBehaviour
         {
             PlayFabId = playFabId
         },
-            success => 
+            success =>
             {
                 //if no display name set yet, first login
-                if(success.PlayerProfile.DisplayName == null)
+                if (success.PlayerProfile.DisplayName == null)
                 {
                     Debug.Log("No display name, first login");
                     loginCanvas.FadeCanvasGroup(1);
@@ -62,12 +61,13 @@ public class PlayFabLogin : MonoBehaviour
                     Debug.Log("DisplayName: " + success.PlayerProfile.DisplayName);
                     loginCanvas.FadeCanvasGroup(0);
                 }
-                
+
                 //signal other scripts that login is completed
-                Announce_LoginSuccess();
+                Announce_LoginSuccess(success.PlayerProfile);
             },
-            error => {
-                Debug.Log("Got error getting titleData:");
+            error =>
+            {
+                Debug.Log("Got error logging in:");
                 Debug.Log(error.GenerateErrorReport());
             }
         );
@@ -86,11 +86,11 @@ public class PlayFabLogin : MonoBehaviour
         {
             DisplayName = displayNameInput.text
         },
-            result => 
+            result =>
             {
                 Debug.Log("Set Display Name to: " + result.DisplayName);
             },
-            error => 
+            error =>
             {
                 Debug.LogError("Error setting Display Name");
                 Debug.LogError(error.GenerateErrorReport());

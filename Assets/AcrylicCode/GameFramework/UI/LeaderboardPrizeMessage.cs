@@ -26,7 +26,7 @@ public class LeaderboardPrizeMessage : MonoBehaviour
         PlayFabLogin.LoginSuccess += CheckForPrizes;
     }
 
-    private void CheckForPrizes()
+    private void CheckForPrizes(PlayerProfileModel profile)
     {
         PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
             result =>

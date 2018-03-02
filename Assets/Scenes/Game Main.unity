@@ -632,6 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6505fd64e39b3429dc1c8841e577e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTokens: 20
   defautTimeTillNext: 180
   doIfNotEnough:
     m_PersistentCalls:
@@ -979,7 +980,7 @@ Prefab:
     - target: {fileID: 224691887492605938, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 215.47583
+      value: 215.3613
       objectReference: {fileID: 0}
     - target: {fileID: 224691887492605938, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
@@ -989,7 +990,7 @@ Prefab:
     - target: {fileID: 224691887492605938, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 430.95166
+      value: 430.7226
       objectReference: {fileID: 0}
     - target: {fileID: 224691887492605938, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
@@ -1039,7 +1040,7 @@ Prefab:
     - target: {fileID: 224264956479865514, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 142.82584
+      value: 268.85
       objectReference: {fileID: 0}
     - target: {fileID: 224264956479865514, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
@@ -1049,7 +1050,7 @@ Prefab:
     - target: {fileID: 224264956479865514, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 285.65167
+      value: 537.7
       objectReference: {fileID: 0}
     - target: {fileID: 224264956479865514, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
@@ -1112,12 +1113,12 @@ Prefab:
     - target: {fileID: 224707057100405394, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 142.82584
+      value: 268.85
       objectReference: {fileID: 0}
     - target: {fileID: 224707057100405394, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 285.65167
+      value: 537.7
       objectReference: {fileID: 0}
     - target: {fileID: 114845070525044728, guid: f56518ecc0d1cac41b2e0fa4795ab7d6,
         type: 2}
@@ -1406,7 +1407,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1162378884}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8851,11 +8852,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95381e19707b8e4daa1e582cfbf0afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statisticName: score
   nameSuffixLength: 4
   highscoreEntryNumber: 100
+  statisticName: score
   entryprefab: {fileID: 114461507616757268, guid: aaa01d4924c82604cb8b4b4335c11da3,
     type: 2}
+  playerScoreEntry: {fileID: 0}
   contentPanel: {fileID: 1144766205}
 --- !u!1 &1084799427
 GameObject:
@@ -11099,7 +11101,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2050110108}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999917
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

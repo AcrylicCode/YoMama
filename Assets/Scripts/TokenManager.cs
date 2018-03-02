@@ -14,7 +14,7 @@ public class TokenManager : MonoBehaviour {
 
 	// these values can be adjusted to fine-tune how generous or shrewd we are with free tokens
 	private static int numTokensRequired = 5;
-	private int maxTokens = 30;
+	public int maxTokens = 30;
 
     public float defautTimeTillNext = 180f;
     private float timeTillNextToken;
